@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${review.title}"></title>
+<link rel='stylesheet' href='style.css' />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+</head>
+<body>
+
+	<h1 th:text="${review.title}"></h1>
+	<img th:src="@{${review.imageUrl}}" th:alt="${review.title}"
+		height=200px>
+	<h2>
+		<a th:text="${review.genre}"></a> <a th:text="${review.year}"></a>
+	</h2>
+	<div th:each="tag: ${review.tags}">
+		<a th:text="${tag}" th:href="@{/show-tag(tag=${tag})}"></a>
+	</div>
+	<p class="content" th:text="${review.content}"></p>
+	<p class="content" th:text="'-'+${review.author}"></p>
+	<p>
+		<a href="http://localhost:8080/show-reviews">Back to home</a>
+	</p>
+
+</body>
+</html>

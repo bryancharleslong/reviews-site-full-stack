@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset='UTF-8' />
+<title>Reviews</title>
+<link rel='stylesheet' href='style.css' />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+</head>
+<body>
+	<h1>Reviews</h1>
+	<div th:each="review: ${reviews}">
+		<ul>
+			<li><a th:href="@{/review(id=${review.id})}"
+				th:text="${review.title}"></a></li>
+		</ul>
+	</div>
+	<h3>
+		All reviews are from IMDb users. <a href="http://www.imdb.com/"><img
+			src="images/imdb.png"></a>
+	</h3>
+</body>
+</html>
