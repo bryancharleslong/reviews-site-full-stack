@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -65,14 +66,9 @@ public class ReviewControllerMockMvcTest {
 	
 	@Test
 	public void shouldPutASingleReviewIntoModel() throws Exception {
-		when(repository.findOne(1L)).thenReturn(firstReview);
+		when(repository.findById(1L)).thenReturn(Optional.of(firstReview));
 		mvc.perform(get("/review?id=1")).andExpect(model().attribute("reviews", is(firstReview)));
 	}
-	@Test
-	public void shouldPutReviewsWithTagIntoModel() throws Exception {
-		Collection<Review> allReviewsWithTag = asList(firstReview);
-		when(repository.findAllWithTag("color")).thenReturn(allReviewsWithTag);
-		mvc.perform(get("/show-tag?tag=color")).andExpect(model().attribute("reviews", is(allReviewsWithTag)));
-	}
+	
 
 }
