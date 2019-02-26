@@ -9,6 +9,8 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 
 	Collection<Review> findByGenre(Genre genre);
 
-	Collection<Review> findByTagsName(String string);
+	Collection<Review> findByTagsName(String tagName);
+
+	Collection<Review> findByGenreId(long genreId);
 	
 }

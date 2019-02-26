@@ -122,6 +122,16 @@ public class JPAMappingsTest {
 		review = result.get();
 		assertThat(review.getGenre(), is(genre));
 	}
+	
+	@Test
+	public void shouldFindTagByName() {
+		Tag tag1 = tagRepo.save(new Tag("one"));
+		entityManager.flush();
+		entityManager.clear();
+		Optional<Tag> result = tagRepo.findByName("one");
+		tag1 = result.get();
+		assertThat(tag1.getName(),is("one"));
+	}
 
 	@Test
 	public void shouldFindReviewsForTag() {
@@ -171,6 +181,22 @@ public class JPAMappingsTest {
 		assertThat(reviewsForGenre,containsInAnyOrder(review1, review2));
 		assertThat(reviewsForGenre, not(hasItem(review3)));
 		
+	}
+	@Test
+	public void shouldFindReviewsForGenreId() {
+		Genre genre1 = genreRepo.save(new Genre("genre one"));
+		Genre genre2 = genreRepo.save(new Genre("genre two"));
+		Review review1 = reviewRepo.save(new Review("title", "imageUrl", "content", "year", "author", genre1));
+		Review review2 = reviewRepo.save(new Review("title", "imageUrl", "content", "year", "author", genre1));
+		Review review3 = reviewRepo.save(new Review("title", "imageUrl", "content", "year", "author", genre2));
+		long genre1Id = genre1.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Review> reviewsForGenre = reviewRepo.findByGenreId(genre1Id);
+		assertThat(reviewsForGenre,containsInAnyOrder(review1, review2));
+		assertThat(reviewsForGenre, not(hasItem(review3)));
 	}
 
 }
