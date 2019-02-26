@@ -18,14 +18,16 @@ h3 {
 	font-size: 1em;
 }
 
+
 li {
 	line-height: 80%;
-	width: 300px;
+	width: 400px;
 	text-align: left;
 	position: relative;
 	left: 50%;
 	margin-left: -150px;
 }
+
 
 .content {
 	white-space: pre-line;

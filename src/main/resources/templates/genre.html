@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title th:text="${genre.name} + ' Reviews'"></title>
+<link rel='stylesheet' href='style.css' />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 </head>
 <body>
-
+	<h1>
+		<a th:text="${genre.name} + ' Reviews'"></a>
+	</h1>
+	<div th:each="review: ${reviews}">
+		<ul>
+			<li><a th:href="@{/review(id=${review.id})}" th:text="${review.title}">review
+				titles</a></li>
+		</ul>
+	</div>
+	<p>
+		<a href="http://localhost:8080/show-reviews">Back to home</a>
+	</p>
 </body>
 </html>

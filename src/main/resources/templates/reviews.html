@@ -8,10 +8,16 @@
 </head>
 <body>
 	<h1>Reviews</h1>
+		<div>
+			<a href= "/show-genres">Genres</a>
+			<a href= "/show-tags">Tags</a>
+		</div>
 	<div th:each="review: ${reviews}">
 		<ul>
-			<li><a th:href="@{/review(id=${review.id})}"
-				th:text="${review.title}"></a></li>
+			<li>
+				<a th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a>
+				<a th:text="${review.year}"></a>
+			</li>
 		</ul>
 	</div>
 	<h3>

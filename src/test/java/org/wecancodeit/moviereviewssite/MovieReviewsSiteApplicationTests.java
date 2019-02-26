@@ -24,6 +24,5 @@ public class MovieReviewsSiteApplicationTests {
 		assertThat(reviewRepo).isNotNull();
 		assertThat(reviewController).isNotNull();
 	}
-
 }
 

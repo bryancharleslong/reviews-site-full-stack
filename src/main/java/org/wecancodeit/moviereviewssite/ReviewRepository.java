@@ -12,5 +12,9 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 	Collection<Review> findByTagsName(String tagName);
 
 	Collection<Review> findByGenreId(long genreId);
+
+	Collection<Review> findAllByOrderByTitleAsc();
+
+	Collection<Review> findAllByOrderByYearAsc();
 	
 }

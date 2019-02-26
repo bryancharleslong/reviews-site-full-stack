@@ -24,8 +24,14 @@ public class ReviewController {
 	GenreRepository genreRepo;
 
 	@RequestMapping("/show-reviews")
-	public String findAllReviews(Model model) {
-		model.addAttribute("reviews", reviewRepo.findAll());
+	public String findAllReviews(@RequestParam(value = "sort", required = false) String sort, Model model) {
+		if (sort != null) {
+			if (sort.equals("year")) {
+				model.addAttribute("reviews", reviewRepo.findAllByOrderByYearAsc());
+			}
+		} else {
+			model.addAttribute("reviews", reviewRepo.findAllByOrderByTitleAsc());
+		}
 		return "reviews";
 	}
 
@@ -52,6 +58,7 @@ public class ReviewController {
 		if (tag.isPresent()) {
 			Collection<Review> reviewsWithTag = reviewRepo.findByTagsName(tagName);
 			model.addAttribute("reviews", reviewsWithTag);
+			model.addAttribute("tag", tag.get());
 			return "tag";
 		}
 		throw new TagNotFoundException();
@@ -69,6 +76,7 @@ public class ReviewController {
 		if (genre.isPresent()) {
 			Collection<Review> reviewsWithGenre = reviewRepo.findByGenre(genre.get());
 			model.addAttribute("reviews", reviewsWithGenre);
+			model.addAttribute("genre", genre.get());
 			return "genre";
 		}
 		throw new GenreNotFoundException();

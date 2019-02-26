@@ -11,7 +11,7 @@
 	<img th:src="@{${review.imageUrl}}" th:alt="${review.title}"
 		height=200px>
 	<h2>
-		<a th:text="${review.genre}"></a> <a th:text="${review.year}"></a>
+		<a th:href="@{/genre(id=${review.genre.id})}" th:text="${review.genre.name}"></a> <a th:text="${review.year}"></a>
 	</h2>
 	<div th:each="tag: ${review.tags}">
 		<a th:text="${tag.name}" th:href="@{/tag(tag=${tag.name})}"></a>
