@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset='UTF-8'>
+<title>All Genres</title>
+<link rel='stylesheet' href='style.css' />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico?" />
 </head>
 <body>
-
+	<h1>All Genres</h1>
+	<div th:each="genre:${genres}">
+		<ul>
+			<li>
+				<a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a>
+			</li>
+		</ul>
+	</div>
+	<p>
+		<a href="http://localhost:8080/show-reviews">Back to home</a>
+	</p>
 </body>
 </html>

@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset='UTF-8'>
+<title>All Tags</title>
+<link rel='stylesheet' href='style.css' />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico?" />
 </head>
 <body>
-
+	<h1>All Tags</h1>
+	<div th:each="tag:${tags}">
+		<ul>
+			<li>
+				<a th:href="@{/tag(tag=${tag.name})}" th:text="${tag.name}"></a>
+			</li>
+		</ul>
+	</div>
+	<p>
+		<a href="http://localhost:8080/show-reviews">Back to home</a>
+	</p>
 </body>
 </html>

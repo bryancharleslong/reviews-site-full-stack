@@ -4,12 +4,14 @@
 <meta charset='UTF-8' />
 <title>Reviews</title>
 <link rel='stylesheet' href='style.css' />
-<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico?" />
 </head>
 <body>
 	<h1>Reviews</h1>
-		<div>
+		<div class="menu" th:switch="${sort}">
 			<a href= "/show-genres">Genres</a>
+			<a th:case= title href= "/show-reviews?sort=year">Sort by Year</a>
+			<a th:case= year href= "/show-reviews">Sort by Title</a>
 			<a href= "/show-tags">Tags</a>
 		</div>
 	<div th:each="review: ${reviews}">

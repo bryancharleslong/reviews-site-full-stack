@@ -28,9 +28,11 @@ public class ReviewController {
 		if (sort != null) {
 			if (sort.equals("year")) {
 				model.addAttribute("reviews", reviewRepo.findAllByOrderByYearAsc());
+				model.addAttribute("sort", "year");
 			}
 		} else {
 			model.addAttribute("reviews", reviewRepo.findAllByOrderByTitleAsc());
+			model.addAttribute("sort", "title");
 		}
 		return "reviews";
 	}

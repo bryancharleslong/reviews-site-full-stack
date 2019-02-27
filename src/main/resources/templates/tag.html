@@ -3,16 +3,17 @@
 <head>
 <title th:text="'Tagged as &quot'+${tag.name} + '&quot'"></title>
 <link rel='stylesheet' href='style.css' />
-<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico?" />
 </head>
 <body>
 	<h1>
-		<a th:text ="'Tagged as &quot'+${tag.name} + '&quot'"></a>
+		<a th:text="'Tagged as &quot'+${tag.name} + '&quot'"></a>
 	</h1>
 	<div th:each="review: ${reviews}">
 		<ul>
-			<li><a th:href="@{/review(id=${review.id})}" th:text="${review.title}">review
-				titles</a></li>
+			<li><a th:href="@{/review(id=${review.id})}"
+				th:text="${review.title}">review titles</a> <a
+				th:text="${review.year}"></a></li>
 		</ul>
 	</div>
 	<p>

@@ -3,7 +3,7 @@
 <head>
 <title th:text="${review.title}"></title>
 <link rel='stylesheet' href='style.css' />
-<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico?" />
 </head>
 <body>
 
@@ -11,10 +11,11 @@
 	<img th:src="@{${review.imageUrl}}" th:alt="${review.title}"
 		height=200px>
 	<h2>
-		<a th:href="@{/genre(id=${review.genre.id})}" th:text="${review.genre.name}"></a> <a th:text="${review.year}"></a>
+		<a th:href="@{/genre(id=${review.genre.id})}"
+			th:text="${review.genre.name}"></a> <a th:text="${review.year}"></a>
 	</h2>
-	<div th:each="tag: ${review.tags}">
-		<a th:text="${tag.name}" th:href="@{/tag(tag=${tag.name})}"></a>
+	<div class = "tags" th:each="tag: ${review.tags}">
+		<a  th:text="${tag.name}" th:href="@{/tag(tag=${tag.name})}"></a>
 	</div>
 	<p class="content" th:text="${review.content}"></p>
 	<p class="content" th:text="'-'+${review.author}"></p>
