@@ -1,6 +1,5 @@
 package org.wecancodeit.moviereviewssite;
 
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -32,39 +31,37 @@ public class Review {
 	public long getId() {
 		return id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public String getImageUrl() {
 		return imageUrl;
 	}
-	
+
 	public Genre getGenre() {
 		return genre;
 	}
-	
+
 	public String getContent() {
 		return content;
 	}
-	
+
 	public String getYear() {
 		return year;
 	}
-	
+
 	public String getAuthor() {
 		return author;
 	}
-	
-	public Collection<Tag> getTags(){
+
+	public Collection<Tag> getTags() {
 		return tags;
 	}
-	
-	
-	public Review() {}
 
-	
+	protected Review() {
+	}
 
 	public Review(String title, String imageUrl, String content, String year, String author, Genre genre, Tag... tags) {
 		this.title = title;
@@ -98,7 +95,4 @@ public class Review {
 		return true;
 	}
 
-	
-
-	
 }

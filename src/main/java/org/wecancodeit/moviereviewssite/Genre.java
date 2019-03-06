@@ -9,23 +9,24 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Genre {
-	
+
 	@Id
 	@GeneratedValue
 	private long id;
 	private String name;
-	@OneToMany(mappedBy="genre")
+	@OneToMany(mappedBy = "genre")
 	private Collection<Review> reviews;
-	
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
-	public Genre() {}
+
+	protected Genre() {
+	}
 
 	public Genre(String name) {
 		this.name = name;
@@ -52,7 +53,5 @@ public class Genre {
 			return false;
 		return true;
 	}
-
-	
 
 }

@@ -26,7 +26,7 @@ public class Tag {
 		return reviews;
 	}
 	
-	public Tag() {}
+	protected Tag() {}
 
 	public Tag(String name) {
 		this.name = name;
