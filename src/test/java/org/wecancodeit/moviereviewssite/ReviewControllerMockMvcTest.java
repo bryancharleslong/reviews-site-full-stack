@@ -69,7 +69,7 @@ public class ReviewControllerMockMvcTest {
 	@Test
 	public void shouldPutAllReviewsIntoModel() throws Exception {
 		Collection<Review> allReviews = asList(firstReview, secondReview);
-		when(reviewRepo.findAll()).thenReturn(allReviews);
+		when(reviewRepo.findAllByOrderByTitleAsc()).thenReturn(allReviews);
 		mvc.perform(get("/show-reviews")).andExpect(model().attribute("reviews", is(allReviews)));
 	}
 	
@@ -81,18 +81,21 @@ public class ReviewControllerMockMvcTest {
 	@Test
 	public void shouldBeOkForOneReview() throws Exception {
 		when(reviewRepo.findById(1L)).thenReturn(Optional.of(firstReview));
+		when(firstReview.getGenre()).thenReturn(firstGenre);
 		mvc.perform(get("/review?id=1")).andExpect(status().isOk());
 	}
 	
 	@Test
 	public void shouldRouteToSingleReviewView() throws Exception {
 		when(reviewRepo.findById(1L)).thenReturn(Optional.of(firstReview));
+		when(firstReview.getGenre()).thenReturn(firstGenre);
 		mvc.perform(get("/review?id=1")).andExpect(view().name(is("review")));
 	}
 	
 	@Test
 	public void shouldPutASingleReviewIntoModel() throws Exception {
 		when(reviewRepo.findById(1L)).thenReturn(Optional.of(firstReview));
+		when(firstReview.getGenre()).thenReturn(firstGenre);
 		mvc.perform(get("/review?id=1")).andExpect(model().attribute("review", is(firstReview)));
 	}
 	
