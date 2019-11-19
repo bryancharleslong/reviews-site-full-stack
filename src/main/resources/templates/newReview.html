@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel='stylesheet' href='style.css' />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico?" />
+<title>New Review</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<div data-ng-app="myApp" data-ng-controller="myCtrl">
+
+<ul>
+  <li ng-repeat="title in reviews track by $index">
+    {{ title }}
+  </li>
+</ul>
+New Title: <input type= "text" ng-model= "newTitle">
+<button ng-click= "postFunction()">Submit</button>
+<p>{{newTitle}}</p>
+
+</div>
+<p>
+	<a href="/show-reviews">Back to home</a>
+</p>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+	$scope.newTitle = "new title";
+	$http.get("restReviews").then(
+		function(response) {$scope.reviews = response.data;}, 
+		function(response) {$scope.reviews = "something wrong with get";} 
+	);
+	$scope.postFunction = function() {
+		$http.post("restReviews", $scope.newTitle).then(
+			function(response) {$scope.reviews = response.data;}, 
+			function(response) {$scope.reviews = "something wrong with post";} 
+		);
+	};
+	
+});
+</script>
+</body>
+</html>

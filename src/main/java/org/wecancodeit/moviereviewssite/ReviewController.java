@@ -46,6 +46,11 @@ public class ReviewController {
 		}
 		throw new ReviewNotFoundException();
 	}
+	
+	@RequestMapping("/newReview")
+	public String newReview() {
+		return "newReview";
+	}
 
 	@RequestMapping("/show-tags")
 	public String findAllTags(Model model) {
